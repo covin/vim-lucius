@@ -128,6 +128,12 @@ else
     let s:use_bold = 1
 endif
 
+if exists("g:lucius_use_italic")
+		let s:use_italic = g:lucius_use_italic
+else
+		let s:use_italic = 1
+endif
+
 if exists("g:lucius_use_underline")
     let s:use_underline = g:lucius_use_underline
 else
@@ -233,7 +239,7 @@ endfunction
 
 let s:normal_items = [
             \ "Normal",
-            \ "ColorColumn", "Comment", "Constant", "Cursor", "CursorColumn",
+            \ "ColorColumn", "Constant", "Cursor", "CursorColumn",
             \ "CursorIM", "CursorLine", "CursorLineNr", "DiffAdd", "DiffChange",
             \ "DiffDelete", "Directory", "Error", "ErrorMsg", "Identifier",
             \ "IncSearch", "LineNr", "MatchParen", "ModeMsg", "MoreMsg",
@@ -249,6 +255,10 @@ let s:bold_items = [
             \ "Title",
             \ ]
 
+let s:italic_items = [
+            \ "Comment"
+						\ ]
+
 let s:underline_items = [
             \ "Underlined", "VisualNOS"
             \ ]
@@ -258,7 +268,9 @@ let s:undercurl_items = [
             \ ]
 
 " Clear default settings
-for s:item in s:normal_items + s:bold_items + s:underline_items + s:undercurl_items
+for s:item in s:normal_items
+						\ + s:bold_items + s:underline_items
+						\ + s:undercurl_items + s:italic_items
     exec "hi " . s:item . " guifg=NONE guibg=NONE gui=none"
                 \ . " ctermfg=NONE ctermbg=NONE cterm=none term=none"
 endfor
@@ -647,6 +659,12 @@ if s:use_bold == 1
     for s:item in s:bold_items
         exec "hi " . s:item . " gui=bold cterm=bold term=none"
     endfor
+endif
+
+if s:use_italic == 1
+		for s:item in s:italic_items
+				exec "hi " . s:item . " gui=italic cterm=italic term=italic"
+		endfor
 endif
 
 if s:use_underline == 1
