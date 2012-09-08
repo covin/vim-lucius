@@ -88,6 +88,10 @@
 " Setting this will cause the color scheme to use underlined fonts for some
 " items.
 "
+" g:lucius_use_italic (default: 0)
+"
+" Setting this will cause the color scheme to use italic fonts for some
+" items (comments).
 " ============================================================================
 
 
@@ -131,7 +135,7 @@ endif
 if exists("g:lucius_use_italic")
 		let s:use_italic = g:lucius_use_italic
 else
-		let s:use_italic = 1
+		let s:use_italic = 0
 endif
 
 if exists("g:lucius_use_underline")
